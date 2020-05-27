@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="text/javascript" src="miclib.js"></script>
+    <script type="text/javascript">
+      let miclib = new MicLib();
+      window.onload = () => {
+
+        miclib.createMicStreamSrcNode(false);
+        miclib.analyserCanvas = document.getElementById("oscillopscope");
+        miclib.drawBasicCanvas();
+        miclib.analyserFlag = true;
+
+      }
+
+      var micFlag = false;
+      function switchMic(button) {
+        if (micFlag) {
+          miclib.stop();
+          micFlag = false;
+          button.innerHTML = "Mic On";
+        } else {
+          miclib.start();
+          micFlag = true;
+          button.innerHTML = "Mic Off";
+        }        
+      }
+
+    </script>
+    <h1>miclib.js example</h1>
+    <div>
+      <canvas id="oscillopscope" width="400" height="200"></canvas>
+    </div>
+    <div>
+      <button onclick="switchMic(this);">Mic On</button>
+    </div>
+  </body>
+</html>
